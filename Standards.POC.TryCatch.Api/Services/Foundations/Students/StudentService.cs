@@ -49,7 +49,6 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                 },
                 WithTracing = new
                 {
-                    Enabled = true,
                     ActivityName =
                         "Standards.POC.TryCatch.Api.Services.Foundations.Students.StudentService.AddStudentAsync",
                     Tags = new Dictionary<string, string> { { "StudentId", student?.Id.ToString() } },

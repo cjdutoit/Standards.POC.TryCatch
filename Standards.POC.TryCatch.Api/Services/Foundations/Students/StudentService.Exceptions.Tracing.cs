@@ -23,7 +23,7 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
         {
             var withTracing = tryCatchDefinition.WithTracing;
 
-            if (withTracing != null && withTracing.Enabled)
+            if (withTracing != null)
             {
                 using (var activity = source.StartActivity(withTracing.ActivityName, ActivityKind.Internal)!)
                 {

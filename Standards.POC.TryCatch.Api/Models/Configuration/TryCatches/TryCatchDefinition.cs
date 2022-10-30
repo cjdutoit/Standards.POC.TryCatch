@@ -15,6 +15,6 @@ namespace Standards.POC.TryCatch.Api.Models.Configuration.TryCatches
         public List<string> WithSecurityRoles { get; set; } = new List<string>();
         public List<Type> WithRetryOn { get; set; } = new List<Type>();
         public List<Type> WithRollbackOn { get; set; } = new List<Type>();
-        public dynamic WithTracing { get; set; }
+        public dynamic WithTracing { get; set; } = null;
     }
 }
