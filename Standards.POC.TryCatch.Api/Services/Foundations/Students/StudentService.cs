@@ -56,7 +56,7 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                     Baggage = new Dictionary<string, string> { { "StudentId", student?.Id.ToString() } },
                 },
                 WithSecurityRoles = new List<string>() { },
-                WithRetryOn = new List<Type>() { typeof(OutOfMemoryException) },
+                WithRetryOn = new List<Type>() { typeof(TimeoutException) },
                 WithRollbackOn = new List<Type>() { typeof(StudentDependencyValidationException) }
             });
         }
