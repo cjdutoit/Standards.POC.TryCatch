@@ -39,6 +39,8 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                 Parameter: nameof(Student.UpdatedByUserId)),
 
                 (Rule: IsNotRecent(student.CreatedDate), Parameter: nameof(Student.CreatedDate)));
+
+            // Logical security validation can go here ...
         }
 
         private void ValidateStudentOnModify(Student student)

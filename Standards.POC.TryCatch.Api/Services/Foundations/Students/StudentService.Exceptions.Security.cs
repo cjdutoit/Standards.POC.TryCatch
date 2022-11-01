@@ -12,6 +12,9 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
     {
         private static void ValidateSecurityRequirement(List<string> securityRoles)
         {
+            // Do security check here.
+            // Entity specific security checks can be done with the locigal validation
+            // e.g.  person that submitted the student, can not be same as approver.
         }
     }
 }

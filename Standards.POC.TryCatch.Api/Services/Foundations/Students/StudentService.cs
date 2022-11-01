@@ -38,7 +38,7 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
         }
 
         public ValueTask<Student> AddStudentAsync(Student student) =>
-            TryCatch(new TryCatchDefinition<ValueTask<Student>>
+            TryCatch(new Operation<ValueTask<Student>>
             {
                 Execution = async () =>
                 {

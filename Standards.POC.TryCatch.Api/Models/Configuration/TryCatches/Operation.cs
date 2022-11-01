@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Standards.POC.TryCatch.Api.Models.Configuration.TryCatches
 {
-    public class TryCatchDefinition<T>
+    public class Operation<T>
     {
         public Func<T> Execution { get; set; }
         public List<string> WithSecurityRoles { get; set; } = new List<string>();

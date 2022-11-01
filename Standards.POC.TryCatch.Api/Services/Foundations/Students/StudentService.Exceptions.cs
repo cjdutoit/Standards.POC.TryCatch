@@ -22,7 +22,7 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
         private delegate ValueTask<Student> ReturningStudentFunction();
         private delegate IQueryable<Student> ReturningStudentsFunction();
 
-        private ValueTask<Student> TryCatch(TryCatchDefinition<ValueTask<Student>> tryCatchDefinition) =>
+        private ValueTask<Student> TryCatch(Operation<ValueTask<Student>> operation) =>
             WithTracing(async () =>
             {
                 return await WithRollback(async () =>
@@ -31,11 +31,11 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                     {
                         return await WithRetry(async () =>
                         {
-                            ValidateSecurityRequirement(tryCatchDefinition.WithSecurityRoles);
+                            ValidateSecurityRequirement(operation.WithSecurityRoles);
 
-                            return await tryCatchDefinition.Execution();
+                            return await operation.Execution();
                         },
-                        tryCatchDefinition.WithRetryOn);
+                        operation.WithRetryOn);
 
                     }
                     catch (NullStudentException nullStudentException)
@@ -92,9 +92,9 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                         throw CreateAndLogServiceException(failedStudentServiceException);
                     }
                 },
-                tryCatchDefinition.WithRollbackOn);
+                operation.WithRollbackOn);
             },
-            tryCatchDefinition);
+            operation);
 
 
         private async ValueTask<Student> TryCatch(ReturningStudentFunction returningStudentFunction)

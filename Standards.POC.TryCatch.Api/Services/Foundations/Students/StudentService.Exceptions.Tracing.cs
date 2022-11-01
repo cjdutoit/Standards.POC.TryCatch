@@ -19,9 +19,9 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
 
         private async ValueTask<Student> WithTracing(
             ReturningStudentFunction returningStudentFunction,
-            TryCatchDefinition<ValueTask<Student>> tryCatchDefinition)
+            Operation<ValueTask<Student>> operation)
         {
-            var withTracing = tryCatchDefinition.WithTracing;
+            var withTracing = operation.WithTracing;
 
             if (withTracing != null)
             {
