@@ -37,9 +37,8 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
             this.retryConfig = retryConfig;
         }
 
-        public ValueTask<Student> AddStudentAsync(Student student)
-        {
-            return TryCatch(new TryCatchDefinition<ValueTask<Student>>
+        public ValueTask<Student> AddStudentAsync(Student student) =>
+            TryCatch(new TryCatchDefinition<ValueTask<Student>>
             {
                 Execution = async () =>
                 {
@@ -49,8 +48,7 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                 },
                 WithTracing = new
                 {
-                    ActivityName =
-                        "Standards.POC.TryCatch.Api.Services.Foundations.Students.StudentService.AddStudentAsync",
+                    ActivityName = nameof(this.AddStudentAsync),
                     Tags = new Dictionary<string, string> { { "StudentId", student?.Id.ToString() } },
                     Baggage = new Dictionary<string, string> { { "StudentId", student?.Id.ToString() } },
                 },
@@ -58,7 +56,6 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                 WithRetryOn = new List<Type>() { typeof(TimeoutException) },
                 WithRollbackOn = new List<Type>() { typeof(StudentDependencyValidationException) }
             });
-        }
 
         public IQueryable<Student> RetrieveAllStudents() =>
             TryCatch(() => this.storageBroker.SelectAllStudents());

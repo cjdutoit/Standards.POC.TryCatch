@@ -34,7 +34,8 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                             ValidateSecurityRequirement(tryCatchDefinition.WithSecurityRoles);
 
                             return await tryCatchDefinition.Execution();
-                        }, tryCatchDefinition.WithRetryOn);
+                        },
+                        tryCatchDefinition.WithRetryOn);
 
                     }
                     catch (NullStudentException nullStudentException)
@@ -90,8 +91,10 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
 
                         throw CreateAndLogServiceException(failedStudentServiceException);
                     }
-                }, tryCatchDefinition.WithRollbackOn);
-            }, tryCatchDefinition);
+                },
+                tryCatchDefinition.WithRollbackOn);
+            },
+            tryCatchDefinition);
 
 
         private async ValueTask<Student> TryCatch(ReturningStudentFunction returningStudentFunction)

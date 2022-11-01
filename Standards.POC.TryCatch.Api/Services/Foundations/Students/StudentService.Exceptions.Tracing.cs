@@ -29,7 +29,6 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                 {
                     SetupActivity(activity, withTracing.ActivityName, withTracing.Tags, withTracing.Baggage);
                     var result = await returningStudentFunction();
-                    activity.Stop();
 
                     return result;
                 }
@@ -44,7 +43,10 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
             Dictionary<string, string> tags = null,
             Dictionary<string, string> baggage = null)
         {
-            activity = activity ?? new Activity(activityName);
+            if (activity == null)
+            {
+                activity = new Activity(activityName);
+            }
 
             if (tags != null)
             {
