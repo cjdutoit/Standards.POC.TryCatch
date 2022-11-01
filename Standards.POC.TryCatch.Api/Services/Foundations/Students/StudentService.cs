@@ -52,7 +52,7 @@ namespace Standards.POC.TryCatch.Api.Services.Foundations.Students
                     Tags = new Dictionary<string, string> { { "StudentId", student?.Id.ToString() } },
                     Baggage = new Dictionary<string, string> { { "StudentId", student?.Id.ToString() } },
                 },
-                WithSecurityRoles = new List<string>() { },
+                WithSecurityRoles = new List<string>() { "Administrators", "Users" },
                 WithRetryOn = new List<Type>() { typeof(TimeoutException) },
                 WithRollbackOn = new List<Type>() { typeof(StudentDependencyValidationException) }
             });
